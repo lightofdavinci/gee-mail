@@ -2,6 +2,10 @@
 var express = require('express');
 var app = express();
 
+app.use('/css', express.static(process.cwd() + '/css'));
+app.use('/img', express.static(process.cwd() + '/img'));
+app.use('/js', express.static(process.cwd() + '/js'));
+
 app.get('/',function (req, res) {
 			res.sendFile(process.cwd() + '/index.html');
 		});
