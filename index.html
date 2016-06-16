@@ -1,18 +1,57 @@
+<!DOCTYPE html>
 <html>
 	<head>
+		<title>Gee Mail Service</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="content-language" content="eng" />
+		<meta name="description" content="Gee Mail Service">
+		<meta name="author" content="dan volosnikov">
+		<meta name="keywords" content="gee mail">
+		<meta name="robots" content="index, follow">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico'/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link href="css/style.css" rel="stylesheet" media="all">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<script src="js/mail-generator.js"></script>
-		<link href="css/style.css" rel="stylesheet" media="screen">
-    <script>
+		<script>
       window.onload = function(){
-        // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
-        // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        
-      };
+        var a = 0,obj = window.geemails,table = document.getElementById('main'),counter = document.getElementById('counter');
+        function sendMessages(){
+        a=0;	
+        $(".btn-default").click();	
+        table.innerHTML = "";	
+        obj.forEach(function(message){
+        			table.innerHTML += "<a data-toggle='modal' data-target='#a"+ ++a +"'><div class='row'><div class='col-xs-2 sender'><p>" + message.sender + "</p></div><div class='col-xs-4 subject'><p>" + message.subject + "</p></div><div class='col-xs-6 date'><p title='"+ message.date +"'>" + message.date + "</p></div></div></a><div class='modal fade' id='a"+ a +"' role='dialog'><div class='modal-dialog modal-lg'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'>&times;</button><h4 class='modal-title'>"+ message.sender +"</h4></div><div class='modal-body'><p>"+ message.body +"</p></div><div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button></div></div></div></div>";
+				 });
+     		counter.innerHTML = "inbox (" + obj.length + ")";
+     		obj.unshift(getNewMessage());
+     		}
+     		sendMessages();
+     		setInterval(sendMessages, 10000);
+     	};
     </script>
 	</head>
 	<body>
-		<div class="container" id="main">
-			Build Me!
+		<div class="header">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-4">
+						<h1>Gee <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Mail</h1>
+					</div>
+					<div class="col-xs-8">
+						<form action="">
+							<input class="search-form" type="text" autocomplete="off" spellcheck="false" placeholder="Search messages">
+							<button type="submit" id ="search" class="search-button">Search</button>
+						</form>
+					</div>
+				</div>
+			</div>	
 		</div>
+
+		<div class="container" id="main"></div>
+		
+		<div id="counter">inbox (0)</div>
 	</body>
 </html>

@@ -1,0 +1,94 @@
+@import url(https://fonts.googleapis.com/css?family=Josefin+Slab:600);
+
+body{
+	background-color: #fca;
+	font-family: 'Josefin Slab', serif;
+}
+
+/* -----------header styles --------- */
+
+.header{
+	background-color: #152230;
+}
+
+.header h1{
+	margin-top:0;
+	color: #fff;
+}
+
+.glyphicon-envelope{
+top:5px;
+bottom:0;
+}
+
+form{
+	float:right;
+}
+
+.search-form{
+  background: transparent;
+  border: 0px;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  height: 40px;
+  width: 240px;
+  font-size:20px;
+}
+
+.search-form:hover{
+ border-bottom: 1px solid #1a77ff;
+}
+
+.search-form:focus{
+outline: none;
+}
+
+.search-button {
+  background: transparent;
+  border: 0px;
+  border-bottom: 1px solid #1a77ff;
+  color: #fff;
+  height: 40px;
+  margin: 0 0 0 10px;
+  padding: 0 10px;
+  font-size:20px;
+}
+
+.search-button:focus{
+	outline: none;
+}
+/* -----------content styles --------- */
+
+#main{
+	margin-top:20px;
+}
+
+#main .row{
+	background-color: #fa8;
+	border-bottom:1px solid #fff;
+}
+
+#main p{
+	font-size:20px;
+}
+
+#main a{
+	color:#222;
+}
+
+#main a:hover{
+	cursor:pointer;
+}
+
+#counter{
+	width:150px;
+	height:50px;
+	position:fixed;
+	background-color: #152230;
+	color:#fff;
+	bottom:0;
+	right:0;
+	font-size:25px;
+	padding-top:7px;
+	padding-left:20px;
+}
