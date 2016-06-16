@@ -1,4 +1,4 @@
-* [Link to my app ](https://gee-mail.herokuapp.com/)
+# [Link to my app ](https://gee-mail.herokuapp.com/)
 
 # GeeMail 
 
