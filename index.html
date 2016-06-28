@@ -17,19 +17,26 @@
 		<script src="js/mail-generator.js"></script>
 		<script>
       window.onload = function(){
-        var a = 0,obj = window.geemails,table = document.getElementById('main'),counter = document.getElementById('counter');
-        function sendMessages(){
-        a=0;	
-        $(".btn-default").click();	
+		    var a = 0,obj = window.geemails,table = document.getElementById('main'),counter = document.getElementById('counter');
+        
+        function update(){
+        a=0;		
         table.innerHTML = "";	
         obj.forEach(function(message){
-        			table.innerHTML += "<a data-toggle='modal' data-target='#a"+ ++a +"'><div class='row'><div class='col-xs-2 sender'><p>" + message.sender + "</p></div><div class='col-xs-4 subject'><p>" + message.subject + "</p></div><div class='col-xs-6 date'><p title='"+ message.date +"'>" + message.date + "</p></div></div></a><div class='modal fade' id='a"+ a +"' role='dialog'><div class='modal-dialog modal-lg'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'>&times;</button><h4 class='modal-title'>"+ message.sender +"</h4></div><div class='modal-body'><p>"+ message.body +"</p></div><div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button></div></div></div></div>";
-				 });
+        			table.innerHTML += "<a data-toggle='modal' data-target='#a"+ ++a +"'><div class='row'><div class='col-xs-2 sender'><p>" + message.sender + "</p></div><div class='col-xs-4 subject'><p>" + message.subject + "</p></div><div class='col-xs-6 date'><p title='"+ message.date +"'>" + message.date + "</p></div></div></a><div class='modal fade' id='a"+ a +"' role='dialog'><div class='modal-dialog modal-lg'><div class='modal-content'><div class='modal-header'><h4 class='modal-title'>"+ message.sender +"</h4></div><div class='modal-body'><p>"+ message.body +"</p></div><div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button></div></div></div></div>";
+				})
+        }
+
+        function sendMessages(){
+        obj.unshift(getNewMessage());	
+        if(!$('.modal').hasClass('in')){
+       		update();
+        ;}
      		counter.innerHTML = "inbox (" + obj.length + ")";
-     		obj.unshift(getNewMessage());
+     		$(".btn-default").on("click",update);	
+     		return sendMessages;
      		}
-     		sendMessages();
-     		setInterval(sendMessages, 10000);
+     		setInterval(sendMessages(), 10000);
      	};
     </script>
 	</head>
